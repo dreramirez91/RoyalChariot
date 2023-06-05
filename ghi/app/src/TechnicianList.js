@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from 'react'
 
-export default function ManufacturerList() {
-    const [manufacturers, setManufacturers] = useState([])
-    async function fetchManufacturers() {
-        const response = await fetch('http://localhost:8100/api/manufacturers/')
+export default function TechnicianList() {
+    const [technicians, setTechnicians] = useState([])
+    async function fetchTechnicians() {
+        const response = await fetch('http://localhost:8080/api/technicians/')
         console.log(response)
         if (response.ok) {
             const data = await response.json()
             console.log(data)
-            setManufacturers(data.manufacturers)
+            setTechnicians(data.technicians)
         }
     }
     useEffect(() => {
-        fetchManufacturers()
+        fetchTechnicians()
     }, [])
 
     return (
         <table className="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
                 </tr>
             </thead>
             <tbody>
-                {manufacturers.map(manufacturer => {
+                {technicians.map(technician => {
                     return (
-                        <tr key={manufacturer.id}>
-                            <td> {manufacturer.name}</td>
+                        <tr key={technician.id}>
+                            <td> {technician.employee_id}</td>
+                            <td> {technician.first_name}</td>
+                            <td> {technician.last_name}</td>
                         </tr>
                     )
                 })}
