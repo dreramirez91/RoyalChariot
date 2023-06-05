@@ -23,13 +23,6 @@ class Appointment(models.Model):
         related_name="appointment",
         on_delete=models.CASCADE
     )
-    
-    
-    
-    
-    
-    
-    
 
 
 
