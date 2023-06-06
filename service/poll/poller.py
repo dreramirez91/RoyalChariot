@@ -13,17 +13,19 @@ django.setup()
 # from service_rest.models import Something
 from service_rest.models import AutomobileVO
 
+
 def poll(repeat=True):
     while True:
         print('Service poller polling for data')
         try:
             response = requests.get("http://inventory-api:8000/api/automobiles/")
-            content = json.loads(response.content)
-            for automobile in content["autos"]:
-                AutomobileVO.objects.update_or_create(
-                    vin=automobile["vin"],
-                    sold=automobile["sold"]
-                )
+            if response.ok:
+                content = json.loads(response.content)
+                for automobile in content["autos"]:
+                    automobiles = AutomobileVO.objects.update_or_create(
+                        vin=automobile["vin"],
+                    )
+                    print("HERE ARE THE UPDATES:", automobiles)
         except Exception as e:
             print(e, file=sys.stderr)
 

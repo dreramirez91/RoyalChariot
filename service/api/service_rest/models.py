@@ -6,8 +6,7 @@ class Technician(models.Model):
     employee_id = models.CharField(max_length=100)
     
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
-    sold = models.BooleanField(default=False)
+    vin = models.CharField(max_length=17)
 
 class Appointment(models.Model):
     date_time = models.DateTimeField()

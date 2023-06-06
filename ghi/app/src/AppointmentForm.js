@@ -17,7 +17,6 @@ export default function AppointmentForm() {
         if (response.ok) {
             const data = await response.json();
             setTechnicians(data["technicians"])
-            console.log(technicians)
         }
     }
     function handleTechnicianChange(e) {

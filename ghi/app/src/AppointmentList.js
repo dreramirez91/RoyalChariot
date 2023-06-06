@@ -22,7 +22,6 @@ export default function AppointmentList() {
     
     async function fetchAutomobiles() {
         const secondResponse = await fetch(`http://localhost:8100/api/automobiles/`)
-        console.log(secondResponse)
         if (secondResponse.ok) {
             const data = await secondResponse.json()
             setAutomobiles(data.autos)

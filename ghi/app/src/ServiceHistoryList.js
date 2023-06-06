@@ -50,7 +50,6 @@ export default function ServiceHistoryList() {
     }
     function soldStatus(vin) {
         for (const auto of automobiles) {
-            console.log("HERE COMES THE CARS", auto)
             if (vin === auto["vin"] && auto["sold"] === true) {
                 return "Yes"
             } else {
