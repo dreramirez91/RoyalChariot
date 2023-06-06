@@ -54,6 +54,7 @@ export default function ModelForm() {
             setManufacturer('')
             setModel('')
             setPictureUrl('')
+            setManufacturers('')
         }
     }
     return(
