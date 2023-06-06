@@ -22,10 +22,9 @@ def poll(repeat=True):
             if response.ok:
                 content = json.loads(response.content)
                 for automobile in content["autos"]:
-                    automobiles = AutomobileVO.objects.update_or_create(
+                    AutomobileVO.objects.update_or_create(
                         vin=automobile["vin"],
                     )
-                    print("HERE ARE THE UPDATES:", automobiles)
         except Exception as e:
             print(e, file=sys.stderr)
 

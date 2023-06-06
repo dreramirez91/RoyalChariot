@@ -29,7 +29,7 @@ export default function TechnicianList() {
             <tbody>
                 {technicians.map(technician => {
                     return (
-                        <tr key={technician.id}>
+                        <tr key={technician.employee_id}>
                             <td> {technician.employee_id}</td>
                             <td> {technician.first_name}</td>
                             <td> {technician.last_name}</td>

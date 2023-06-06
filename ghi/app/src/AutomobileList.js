@@ -16,13 +16,12 @@ export default function AutomobileList() {
     }, [])
 
     function soldStatus(vin) {
-        for (const auto of automobiles) {
+        for (let auto of automobiles) {
+            console.log("HERE ARE THE AUTOS FROM THE INVENTORY", auto)
             if (vin === auto["vin"] && auto["sold"] === true) {
                 return "Yes"
-            } else {
-                return "No"
             }
-        }
+        } return "No"
     }
 
     return (
