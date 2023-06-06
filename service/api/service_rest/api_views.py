@@ -14,20 +14,14 @@ class TechnicianListEncoder(ModelEncoder):
 class TechnicianDetailEncoder(ModelEncoder):
     model = Technician
     properties = ["first_name", "last_name", "employee_id"]
-
-
-class AutomobileVODetailEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = ["sold"]
     
     
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
-    properties = ["id", "date_time", "reason", "status", "vin", "customer", "technician", "automobile"]
+    properties = ["id", "date_time", "reason", "status", "vin", "customer", "technician"]
     
     encoders = {
         "technician": TechnicianListEncoder(),
-        "automobile": AutomobileVODetailEncoder()
     }
     
     
@@ -71,9 +65,6 @@ def api_list_appointments(request):
         )
     else:
         content = json.loads(request.body)
-        if "automobile" not in content:
-            new_automobile = AutomobileVO.objects.create(vin=content["vin"], sold=False)
-            content["automobile"] = new_automobile
         try:
             technician = Technician.objects.get(employee_id=content["technician"])
             content["technician"] = technician

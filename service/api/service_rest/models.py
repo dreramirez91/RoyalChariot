@@ -6,7 +6,7 @@ class Technician(models.Model):
     employee_id = models.CharField(max_length=100)
     
 class AutomobileVO(models.Model):
-    vin = models.CharField(null=True, blank=True, max_length=17, unique=True)
+    vin = models.CharField(null=True, blank=True, max_length=17)
     sold = models.BooleanField(default=False)
 
 class Appointment(models.Model):
@@ -20,26 +20,3 @@ class Appointment(models.Model):
         related_name="appointment",
         on_delete=models.CASCADE
     )
-    automobile = models.ForeignKey(
-        AutomobileVO,
-        related_name="appointment",
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# vinfield = charfield we want anyone to be able to bring in their cars not just the ones sold from the inventory
