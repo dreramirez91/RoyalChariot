@@ -18,7 +18,7 @@ class TechnicianDetailEncoder(ModelEncoder):
 
 class AutomobileVODetailEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ["vin", "sold"]
+    properties = ["sold"]
     
     
 class AppointmentListEncoder(ModelEncoder):
@@ -30,8 +30,7 @@ class AppointmentListEncoder(ModelEncoder):
         "automobile": AutomobileVODetailEncoder()
     }
     
-
-
+    
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
 
@@ -72,6 +71,9 @@ def api_list_appointments(request):
         )
     else:
         content = json.loads(request.body)
+        if "automobile" not in content:
+            new_automobile = AutomobileVO.objects.create(vin=content["vin"], sold=False)
+            content["automobile"] = new_automobile
         try:
             technician = Technician.objects.get(employee_id=content["technician"])
             content["technician"] = technician
@@ -93,6 +95,7 @@ def api_delete_appointment(request, id):
         appointment.delete()
         return JsonResponse(
             {"message": f"The appointment at id {id} has been deleted"},
+            status=200
         )
 
 
@@ -102,7 +105,8 @@ def api_cancel_appointment(request, id):
         appointment.status = "canceled"
         appointment.save()
         return JsonResponse(
-            {"message": f"{appointment.customer}'s appointment has been canceled"}
+            {"message": f"{appointment.customer}'s appointment has been canceled"},
+            status=200
         )
     
 def api_finish_appointment(request, id):
@@ -111,5 +115,6 @@ def api_finish_appointment(request, id):
         appointment.status = "finished"
         appointment.save()
         return JsonResponse(
-            {"message": f"{appointment.customer}'s appointment has been finished"}
+            {"message": f"{appointment.customer}'s appointment has been finished"},
+            status=200
         )

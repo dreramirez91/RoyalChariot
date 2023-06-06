@@ -29,7 +29,6 @@ export default function ServiceHistoryList() {
                 const data = await response.json()
                 console.log(data)
                 const filteredAppointments = data.appointments.filter(appointment => appointment.vin === vin)
-                console.log("DATA.APPOINTMENTS:", data.appointments)
                 setAppointments(filteredAppointments)
             }
         }
