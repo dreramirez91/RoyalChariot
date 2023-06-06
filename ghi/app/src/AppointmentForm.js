@@ -65,7 +65,6 @@ export default function AppointmentForm() {
             setDateTime('')
             setTechnician('')
             setReason('')
-            setTechnicians([])
         }
     }
     return (
@@ -87,7 +86,7 @@ export default function AppointmentForm() {
                             <label htmlFor="pictureUrl">Date & Time...</label>
                         </div>
                         <div className="mb-3">
-                            <select value={technician.employee_id} onChange={handleTechnicianChange} name="technician" className="form-select" required>
+                            <select value={technician} onChange={handleTechnicianChange} name="technician" className="form-select" required>
                                 <option value="">Choose a technician...</option>
                                 {technicians.map(technician => {
                                     return (<option value={technician.employee_id} key={technician.employee_id}>{`${technician.first_name} ${technician.last_name}`}</option>)
