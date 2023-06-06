@@ -65,6 +65,8 @@ export default function AppointmentForm() {
             setCustomer('')
             setDateTime('')
             setTechnician('')
+            setReason('')
+            setTechnicians([])
         }
     }
     return (
