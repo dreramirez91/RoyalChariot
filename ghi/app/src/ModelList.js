@@ -30,7 +30,7 @@ export default function ModelList() {
                         <tr key={model.id}>
                             <td>{model.name}</td>
                             <td> {model.manufacturer.name}</td>
-                            <td scope="row"><img src={model.picture_url} alt={`Image of ${model.name} ${model.manufacturer.name}`} className="img-thumbnail" style={{ maxWidth: '20em', maxHeight: '20em' }}/></td>
+                            <td scope="row"><img src={model.picture_url} alt={`Image of ${model.name} ${model.manufacturer.name}`} className="img-thumbnail" style={{ maxWidth: '20em', maxHeight: '20em' }} /></td>
                         </tr>
                     )
                 })}

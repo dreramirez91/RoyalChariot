@@ -14,7 +14,7 @@ export default function ManufacturerList() {
     useEffect(() => {
         fetchManufacturers()
     }, [])
-    
+
     return (
         <table className="table table-striped">
             <thead>
