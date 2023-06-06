@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Technician, AutomobileVO, Appointment
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
@@ -14,15 +14,22 @@ class TechnicianListEncoder(ModelEncoder):
 class TechnicianDetailEncoder(ModelEncoder):
     model = Technician
     properties = ["first_name", "last_name", "employee_id"]
+
+
+class AutomobileVODetailEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = ["vin", "sold"]
     
     
 class AppointmentListEncoder(ModelEncoder):
     model = Appointment
-    properties = ["date_time", "reason", "status", "vin", "customer", "technician"]
+    properties = ["id", "date_time", "reason", "status", "vin", "customer", "technician", "automobile"]
     
     encoders = {
         "technician": TechnicianListEncoder(),
+        "automobile": AutomobileVODetailEncoder()
     }
+    
 
 
 @require_http_methods(["GET", "POST"])
@@ -42,6 +49,16 @@ def api_list_technicians(request):
             encoder=TechnicianDetailEncoder,
             safe=False,
             )
+        
+        
+def api_delete_technician(request, id):
+    if request.method == "DELETE":
+        technician = get_object_or_404(Technician, id=id)
+        technician.delete()
+        return JsonResponse(
+            {"message": f"The technician at id {id} has been deleted"},
+            status=200
+        )
 
 
 @require_http_methods(["GET", "POST"])
@@ -63,10 +80,36 @@ def api_list_appointments(request):
                 {"message": "That technician does not work here"},
                 status=400,
             )
-
         appointment = Appointment.objects.create(**content)
         return JsonResponse(
             appointment,
             encoder=AppointmentListEncoder,
             safe=False,
+        )
+
+def api_delete_appointment(request, id):
+    if request.method == "DELETE":
+        appointment = get_object_or_404(Appointment, id=id)
+        appointment.delete()
+        return JsonResponse(
+            {"message": f"The appointment at id {id} has been deleted"},
+        )
+
+
+def api_cancel_appointment(request, id):
+    if request.method == "PUT":
+        appointment = get_object_or_404(Appointment, id=id)
+        appointment.status = "canceled"
+        appointment.save()
+        return JsonResponse(
+            {"message": f"{appointment.customer}'s appointment has been canceled"}
+        )
+    
+def api_finish_appointment(request, id):
+    if request.method == "PUT":
+        appointment = get_object_or_404(Appointment, id=id)
+        appointment.status = "finished"
+        appointment.save()
+        return JsonResponse(
+            {"message": f"{appointment.customer}'s appointment has been finished"}
         )

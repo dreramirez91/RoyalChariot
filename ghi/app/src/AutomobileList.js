@@ -16,6 +16,8 @@ export default function AutomobileList() {
     }, [])
 
     return (
+        <>
+        <h1 style={{ marginTop: '10px'}}>Automobiles</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -42,5 +44,6 @@ export default function AutomobileList() {
                 })}
             </tbody>
         </table>
+        </>
     )
 }

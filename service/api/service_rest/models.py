@@ -23,6 +23,13 @@ class Appointment(models.Model):
         related_name="appointment",
         on_delete=models.CASCADE
     )
+    automobile = models.ForeignKey(
+        AutomobileVO,
+        related_name="appointment",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
 
 

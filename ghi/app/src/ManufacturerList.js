@@ -16,6 +16,8 @@ export default function ManufacturerList() {
     }, [])
 
     return (
+        <>
+        <h1 style={{ marginTop: '10px'}}>Manufacturers</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -32,5 +34,6 @@ export default function ManufacturerList() {
                 })}
             </tbody>
         </table>
+        </>
     )
 }

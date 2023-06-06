@@ -16,6 +16,8 @@ export default function TechnicianList() {
     }, [])
 
     return (
+        <>
+        <h1 style={{ marginTop: '10px'}}>Technicians</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -36,5 +38,6 @@ export default function TechnicianList() {
                 })}
             </tbody>
         </table>
+        </>
     )
 }
