@@ -15,6 +15,17 @@ export default function AutomobileList() {
         fetchAutomobiles()
     }, [])
 
+    function soldStatus(vin) {
+        for (const auto of automobiles) {
+            console.log("HERE COMES THE CARS", auto)
+            if (vin === auto["vin"] && auto["sold"] === true) {
+                return "Yes"
+            } else {
+                return "No"
+            }
+        }
+    }
+
     return (
         <>
         <h1 style={{ marginTop: '10px'}}>Automobiles</h1>
@@ -38,7 +49,7 @@ export default function AutomobileList() {
                             <td> {automobile.year}</td>
                             <td> {automobile.model.name}</td>
                             <td> {automobile.model.manufacturer.name}</td>
-                            <td> {String(automobile.sold)}</td>
+                            <td> {soldStatus(automobile.vin)}</td>
                         </tr>
                     )
                 })}
