@@ -80,6 +80,7 @@ def api_list_appointments(request):
             safe=False,
         )
 
+
 def api_delete_appointment(request, id):
     if request.method == "DELETE":
         appointment = get_object_or_404(Appointment, id=id)
