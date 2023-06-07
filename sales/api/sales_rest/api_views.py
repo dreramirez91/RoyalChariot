@@ -6,7 +6,7 @@ import json
 
 
 # Create your views here.
-class AutomobileVODetailEncoder(ModelEncoder):
+class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
         "vin",
@@ -14,7 +14,7 @@ class AutomobileVODetailEncoder(ModelEncoder):
         ]
 
 
-class SalespersonListEncoder(ModelEncoder):
+class SalespersonEncoder(ModelEncoder):
     model = Salesperson
     properties = [
         "id",
@@ -24,17 +24,7 @@ class SalespersonListEncoder(ModelEncoder):
         ]
 
 
-class SalespersonDetailEncoder(ModelEncoder):
-    model = Salesperson
-    properties = [
-        "id",
-        "first_name",
-        "last_name",
-        "employee_id",
-        ]
-
-
-class CustomerListEncoder(ModelEncoder):
+class CustomerEncoder(ModelEncoder):
     model = Customer
     properties = [
         "id",
@@ -45,18 +35,7 @@ class CustomerListEncoder(ModelEncoder):
         ]
 
 
-class CustomerDetailEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "id",
-        "first_name",
-        "last_name",
-        "address",
-        "phone_number",
-        ]
-
-
-class SaleListEncoder(ModelEncoder):
+class SalesEncoder(ModelEncoder):
     model = Sale
     properties = [
         "id",
@@ -66,24 +45,10 @@ class SaleListEncoder(ModelEncoder):
         "customer",
         ]
     encoders = {
-        "automobile": AutomobileVODetailEncoder(),
-        "salesperson": SalespersonDetailEncoder(),
-        "customer": CustomerDetailEncoder(),
+        "automobile": AutomobileVOEncoder(),
+        "salesperson": SalespersonEncoder(),
+        "customer": CustomerEncoder(),
     }
-
-    def get_extra_data(self, o):
-        return {"vin": o.automobile.vin}
-
-
-class SaleDetailEncoder(ModelEncoder):
-    model = Sale
-    properties = [
-        "id",
-        "price",
-        "automobile",
-        "salesperson",
-        "customer",
-        ]
 
     def get_extra_data(self, o):
         return {"vin": o.automobile.vin}
@@ -96,14 +61,14 @@ def api_list_salespeople(request):
         salespeople = Salesperson.objects.all()
         return JsonResponse(
             {"salespeople": salespeople},
-            encoder=SalespersonListEncoder,
+            encoder=SalespersonEncoder,
         )
     else:
         content = json.loads(request.body)
         salesperson = Salesperson.objects.create(**content)
         return JsonResponse(
             salesperson,
-            encoder=SalespersonDetailEncoder,
+            encoder=SalespersonEncoder,
             safe=False
         )
 
@@ -122,7 +87,7 @@ def api_show_salespeople(request, id):
     if request.method == "GET":
         return JsonResponse(
             salesperson,
-            encoder=SalespersonDetailEncoder,
+            encoder=SalespersonEncoder,
             safe=False,
         )
 
@@ -138,14 +103,14 @@ def api_list_customers(request):
         customers = Customer.objects.all()
         return JsonResponse(
             {"customers": customers},
-            encoder=CustomerListEncoder,
+            encoder=CustomerEncoder,
         )
     else:
         content = json.loads(request.body)
         customer = Customer.objects.create(**content)
         return JsonResponse(
             customer,
-            encoder=CustomerDetailEncoder,
+            encoder=CustomerEncoder,
             safe=False
         )
 
@@ -164,7 +129,7 @@ def api_show_customers(request, id):
     if request.method == "GET":
         return JsonResponse(
             customer,
-            encoder=CustomerDetailEncoder,
+            encoder=CustomerEncoder,
             safe=False,
         )
 
@@ -180,14 +145,15 @@ def api_list_sales(request):
         sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
-            encoder=SaleListEncoder,
+            encoder=SalesEncoder,
         )
     else:
         content = json.loads(request.body)
+
         try:
-            vin = content["vin"]
-            vin = AutomobileVO.objects.get(vin=vin)
-            content["vin"] = vin
+            vin = content["automobile"]
+            automobile = AutomobileVO.objects.get(vin=vin)
+            content["automobile"] = automobile
 
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
@@ -195,10 +161,35 @@ def api_list_sales(request):
                 status=400,
             )
 
+        try:
+            employee_id = content["salesperson"]
+            salesperson = Salesperson.objects.get(employee_id=employee_id)
+            content["salesperson"] = salesperson
+
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid employee id"},
+                status=400,
+            )
+
+        try:
+            customer_id = content["customer"]
+            customer = Customer.objects.get(id=customer_id)
+            content["customer"] = customer
+
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid customer id"},
+                status=400,
+            )
+
         sale = Sale.objects.create(**content)
+        sale.automobile.sold = True
+        sale.automobile.save()
+
         return JsonResponse(
             sale,
-            encoder=SaleDetailEncoder,
+            encoder=SalesEncoder,
             safe=False,
         )
 
@@ -217,10 +208,29 @@ def api_show_sales(request, id):
     if request.method == "GET":
         return JsonResponse(
             sale,
-            encoder=SaleDetailEncoder,
+            encoder=SalesEncoder,
             safe=False,
         )
 
     else:
         count, _ = Sale.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods(["GET", "POST"])
+def api_list_automobiles(request):
+
+    if request.method == "GET":
+        automobile = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"automobile": automobile},
+            encoder=AutomobileVOEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        automobile = AutomobileVO.objects.create(**content)
+        return JsonResponse(
+            automobile,
+            encoder=AutomobileVOEncoder,
+            safe=False
+        )

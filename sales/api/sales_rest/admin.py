@@ -20,4 +20,4 @@ class SaleAdmin(admin.ModelAdmin):
 
 @admin.register(AutomobileVO)
 class AutomobileVOAdmin(admin.ModelAdmin):
-    list_display = ["vin", "sold"]
+    list_display = ["id", "vin", "sold"]
