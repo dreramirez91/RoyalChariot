@@ -34,20 +34,11 @@ export default function ServiceHistoryList() {
         setVin(e.target.value)
     }
 
-    async function handleSubmit(e) {
-        e.preventDefault()
-        async function fetchFilteredAppointments() {
-            const response = await fetch('http://localhost:8080/api/appointments/')
-            console.log(response)
-            if (response.ok) {
-                const data = await response.json()
-                console.log(data)
-                const filteredAppointments = data.appointments.filter(appointment => appointment.vin === vin)
-                setAppointments(filteredAppointments)
+    async function filterAppointments() {
+        const filteredAppointments = appointments.filter(appointment => appointment.vin === vin)
+        setAppointments(filteredAppointments)
             }
-        }
-        fetchFilteredAppointments()
-    }
+
     function soldStatus(vin) {
         for (let auto of automobiles) {
             console.log("HERE ARE THE AUTOS FROM THE INVENTORY", auto)
@@ -60,12 +51,10 @@ export default function ServiceHistoryList() {
     return (
         <>
             <h1 style={{ marginTop: '10px' }}>Service History</h1>
-            <form onSubmit={handleSubmit}>
                 <div className="form-floating mb-3">
                     <input value={vin} onChange={handleVinChange} placeholder="Vin" required type="text" name="vin" id="vin" className="form-control" />
-                    <label htmlFor="vin">Search by VIN...</label> <button onClick={() => handleSubmit()} className="btn btn-primary">Search</button>
+                    <label htmlFor="vin">Search by VIN...</label> <button onClick={() => filterAppointments()} className="btn btn-primary">Search</button>
                 </div>
-            </form>
             <table className="table table-striped">
                 <thead>
                     <tr>
