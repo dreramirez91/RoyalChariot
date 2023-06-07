@@ -5,7 +5,6 @@ from common.json import ModelEncoder
 import json
 
 
-# Create your views here.
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
