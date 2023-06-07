@@ -69,7 +69,6 @@ export default function AppointmentList() {
     }
     function soldStatus(vin) {
         for (let auto of automobiles) {
-            console.log("HERE ARE THE AUTOS FROM THE INVENTORY", auto)
             if (vin === auto["vin"]) {
                 return "Yes"
             }
