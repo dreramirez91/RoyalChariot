@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 function NewSaleForm() {
-    const [sales, setSales] = useState([])
     const [customers, setCustomers] = useState([])
     const [salespeople, setSalespeople] = useState([])
     const [vins, setVins] = useState([])
@@ -17,16 +16,6 @@ function NewSaleForm() {
         if (response.ok) {
           const data = await response.json();
           setVins(data.automobile);
-        }
-      }
-
-    const fetchSales = async () => {
-        const salesUrl = 'http://localhost:8090/api/sales/';
-        const response = await fetch(salesUrl);
-        if (response.ok) {
-          const data = await response.json();
-          console.log("dssd", data);
-          setSales(data.sales);
         }
       }
 
@@ -96,7 +85,6 @@ function NewSaleForm() {
 
 
       useEffect(()=> {
-        fetchSales();
         fetchCustomers();
         fetchSalespeople();
         fetchVins();
@@ -125,7 +113,7 @@ function NewSaleForm() {
                                 <option value="">Choose a salesperson</option>
                                 {salespeople.map(salesperson => {
                                 return (
-                                    <option key={salesperson.id} value={salesperson.employee_id}>{`${salesperson.first_name} ${salesperson.last_name}`}</option>
+                                    <option key={salesperson.employee_id} value={salesperson.employee_id}>{`${salesperson.first_name} ${salesperson.last_name}`}</option>
                                 )
                                 })}
                             </select>
