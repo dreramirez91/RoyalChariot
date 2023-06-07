@@ -18,6 +18,11 @@ function Nav() {
             <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/automobiles/create">Create an Automobile</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/technicians">Technicians</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/technicians/create">Add a Technician</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/salesperson">Salespeople</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/salesperson/create">Add a Salesperson</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/customer">Customers</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/customer/create">Add a Customer</NavLink></li>
+            <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/newsale/create">Add a sale</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/appointments/">Appointments</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/appointments/create">Create a Service Appointment</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" aria-current="page" to="/appointments/history">Service History</NavLink></li>
