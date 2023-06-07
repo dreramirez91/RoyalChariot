@@ -34,10 +34,10 @@ export default function ServiceHistoryList() {
         setVin(e.target.value)
     }
 
-    async function filterAppointments() {
+    function filterAppointments() {
         const filteredAppointments = appointments.filter(appointment => appointment.vin === vin)
         setAppointments(filteredAppointments)
-            }
+    }
 
     function soldStatus(vin) {
         for (let auto of automobiles) {
@@ -51,10 +51,10 @@ export default function ServiceHistoryList() {
     return (
         <>
             <h1 style={{ marginTop: '10px' }}>Service History</h1>
-                <div className="form-floating mb-3">
-                    <input value={vin} onChange={handleVinChange} placeholder="Vin" required type="text" name="vin" id="vin" className="form-control" />
-                    <label htmlFor="vin">Search by VIN...</label> <button onClick={() => filterAppointments()} className="btn btn-primary">Search</button>
-                </div>
+            <div className="form-floating mb-3">
+                <input value={vin} onChange={handleVinChange} placeholder="Vin" required type="text" name="vin" id="vin" className="form-control" />
+                <label htmlFor="vin">Search by VIN...</label> <button onClick={() => filterAppointments()} className="btn btn-primary">Search</button>
+            </div>
             <table className="table table-striped">
                 <thead>
                     <tr>
