@@ -51,7 +51,7 @@ def api_delete_technician(request, id):
         technician = get_object_or_404(Technician, id=id)
         technician.delete()
         return JsonResponse(
-            {"message": f"The technician at id {id} has been deleted"}, status=200
+            {"message": f"The technician at id {id} has been deleted"}
         )
 
 
@@ -86,7 +86,7 @@ def api_delete_appointment(request, id):
         appointment = get_object_or_404(Appointment, id=id)
         appointment.delete()
         return JsonResponse(
-            {"message": f"The appointment at id {id} has been deleted"}, status=200
+            {"message": f"The appointment at id {id} has been deleted"}
         )
 
 
@@ -97,7 +97,6 @@ def api_cancel_appointment(request, id):
         appointment.save()
         return JsonResponse(
             {"message": f"{appointment.customer}'s appointment has been canceled"},
-            status=200,
         )
 
 
@@ -108,5 +107,4 @@ def api_finish_appointment(request, id):
         appointment.save()
         return JsonResponse(
             {"message": f"{appointment.customer}'s appointment has been finished"},
-            status=200,
         )
