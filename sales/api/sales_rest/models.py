@@ -64,4 +64,4 @@ class Sale(models.Model):
     )
 
     def __str__(self):
-        return self.automobile
+        return self.automobile.vin
