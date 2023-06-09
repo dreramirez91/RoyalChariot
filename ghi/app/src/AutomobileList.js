@@ -17,7 +17,7 @@ export default function AutomobileList() {
 
     function soldStatus(vin) {
         for (let auto of automobiles) {
-            if (vin === auto["vin"]) {
+            if (vin === auto["vin"] && auto["sold"] === true) {
                 return "Yes"
             }
         } return "No"
