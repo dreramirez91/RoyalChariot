@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function AppointmentForm() {
     const [technicians, setTechnicians] = useState([])
@@ -7,6 +8,7 @@ export default function AppointmentForm() {
     const [dateTime, setDateTime] = useState('')
     const [technician, setTechnician] = useState('')
     const [reason, setReason] = useState('')
+    const navigate = useNavigate()
 
 
     const fetchData = async () => {
@@ -66,6 +68,7 @@ export default function AppointmentForm() {
             setTechnician('')
             setReason('')
         }
+        navigate("/appointments")
     }
     return (
         <div className="row">

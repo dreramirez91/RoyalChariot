@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function NewSaleForm() {
     const [customers, setCustomers] = useState([])
@@ -9,6 +10,8 @@ function NewSaleForm() {
     const [vin, setVin] = useState('')
     const [salesperson, setSalesperson] = useState('')
     const [customer, setCustomer] = useState('')
+
+    const navigate = useNavigate()
 
     const fetchVins = async () => {
         const vinsUrl = 'http://localhost:8090/api/automobiles/';
@@ -81,6 +84,7 @@ function NewSaleForm() {
             setCustomer('')
             fetchVins()
         }
+        navigate("/saleslist")
     }
 
     const handlePriceChange = (e) => {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function AutomobileForm() {
     const [models, setModels] = useState([])
@@ -6,6 +7,7 @@ export default function AutomobileForm() {
     const [year, setYear] = useState('')
     const [vin, setVin] = useState('')
     const [model, setModel] = useState('')
+    const navigate = useNavigate()
 
 
     const fetchData = async () => {
@@ -61,6 +63,7 @@ export default function AutomobileForm() {
             setVin('')
             setModel('')
         }
+        navigate("/automobiles")
     }
     return(
     <div className="row">

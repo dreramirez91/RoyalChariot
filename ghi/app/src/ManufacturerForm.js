@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function ManufacturerForm() {
     const [manufacturer, setManufacturer] = useState('')
+    const navigate = useNavigate()
 
     function handleManufacturerChange(e) {
         setManufacturer(e.target.value)
@@ -26,6 +28,7 @@ export default function ManufacturerForm() {
             console.log(newManufacturer)
             setManufacturer('')
         }
+        navigate("/manufacturers")
     }
     return (
         <div className="row">

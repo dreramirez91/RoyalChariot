@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function TechnicianForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [employeeId, setEmployeeId] = useState('')
+    const navigate = useNavigate()
 
     function handleFirstNameChange(e) {
         setFirstName(e.target.value)
@@ -38,6 +40,7 @@ export default function TechnicianForm() {
             setLastName('')
             setEmployeeId('')
         }
+        navigate("/technicians")
     }
     return (
         <div className="row">
