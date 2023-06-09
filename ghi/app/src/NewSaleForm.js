@@ -55,10 +55,26 @@ function NewSaleForm() {
                 'Content-Type': 'application/json'
             }
         }
+
+        const automobileSold = async () => {
+          const fetchOptions = {
+              method: "PUT",
+              body: JSON.stringify({ "sold": true }),
+          };
+          const response = await fetch(
+              `http://localhost:8100/api/automobiles/${vin}/`,
+              fetchOptions
+          );
+          if (response.ok) {
+              const data = await response.json();
+          }
+        };
+
         const response = await fetch(createSaleUrl, fetchConfig)
         if (response.ok) {
             const newSale = await response.json()
             console.log(newSale)
+            await automobileSold()
             setPrice('')
             setVin('')
             setSalesperson('')
