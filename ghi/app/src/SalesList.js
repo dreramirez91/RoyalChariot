@@ -18,7 +18,7 @@ function SalesList() {
 
     return (
         <>
-        <h1 style={{ marginTop: '10px'}}>Salespeople</h1>
+        <h1 style={{ marginTop: '10px'}}>Sales</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
