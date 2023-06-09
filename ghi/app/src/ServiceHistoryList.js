@@ -47,6 +47,12 @@ export default function ServiceHistoryList() {
         } return "No"
     }
 
+    function formatDate(string){
+        const date = new Date()
+        const timeString = date.toLocaleTimeString(undefined, { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+        return timeString.replace(/\s/g, '').replace(',', ', ')
+    }
+
     return (
         <>
             <h1 style={{ marginTop: '10px' }}>Service History</h1>
@@ -73,7 +79,7 @@ export default function ServiceHistoryList() {
                                 <td>{appointment.vin}</td>
                                 <td>{soldStatus(appointment.vin)}</td>
                                 <td> {appointment.customer}</td>
-                                <td> {appointment.date_time}</td>
+                                <td> {formatDate(appointment.date_time)}</td>
                                 <td> {`${appointment.technician.first_name} ${appointment.technician.last_name}`}</td>
                                 <td> {appointment.reason}</td>
                                 <td> {appointment.status}</td>
