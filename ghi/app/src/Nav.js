@@ -3,16 +3,16 @@ import * as Icons from "react-icons/fa"
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">CarCar<Icons.FaCar style={{ marginLeft: '2px' }} /></NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="navbar-collapse">
-          <ul className="navbar-nav mb-2 mb-lg-0 nav-fill w-70">
+          <ul className="navbar-nav mb-2 mb-lg-0 nav-fill w-100">
             <div className="dropdown">
-              <button className="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Inventory
               </button>
               <ul className="dropdown-menu">
@@ -25,7 +25,7 @@ function Nav() {
               </ul>
             </div>
             <div className="dropdown">
-              <button className="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Sales
               </button>
               <ul className="dropdown-menu">
@@ -39,7 +39,7 @@ function Nav() {
               </ul>
             </div>
             <div className="dropdown">
-              <button className="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Services
               </button>
               <ul className="dropdown-menu">
