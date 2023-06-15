@@ -82,7 +82,7 @@ export default function AppointmentForm() {
                         </div>
                         <div className="form-floating mb-3">
                             <input value={customer} onChange={handleCustomerChange} placeholder="Customer" required type="text" name="customer" className="form-control" />
-                            <label htmlFor="pictureUrl">Year...</label>
+                            <label htmlFor="pictureUrl">Name...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={dateTime} onChange={handleDateTimeChange} placeholder="Date/Time" required type="datetime-local" name="date_time" className="form-control" />

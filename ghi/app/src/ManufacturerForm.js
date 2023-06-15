@@ -26,9 +26,9 @@ export default function ManufacturerForm() {
         if (response.ok) {
             const newManufacturer = await response.json()
             console.log(newManufacturer)
-            setManufacturer('')
+            // setManufacturer('')
         }
-        navigate("/manufacturers")
+        // navigate("/manufacturers")
     }
     return (
         <div className="row">
