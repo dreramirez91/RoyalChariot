@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function CustomerForm() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [address, setAddress] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const navigate = useNavigate()
 
     function handleFirstNameChange(e) {
         setFirstName(e.target.value)
@@ -44,6 +46,7 @@ function CustomerForm() {
             setAddress('')
             setPhoneNumber('')
         }
+        navigate("/customer")
     }
     return (
         <div className="row">

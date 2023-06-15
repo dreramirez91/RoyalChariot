@@ -74,6 +74,11 @@ export default function AppointmentList() {
             }
         } return "No"
     }
+    function formatDate(string){
+        const date = new Date()
+        const timeString = date.toLocaleTimeString(undefined, { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+        return timeString.replace(/\s/g, '').replace(',', ', ')
+    }
 
     return (
         <>
@@ -97,7 +102,7 @@ export default function AppointmentList() {
                                     <td>{appointment.vin}</td>
                                     <td>{soldStatus(appointment.vin)}</td>
                                     <td> {appointment.customer}</td>
-                                    <td> {appointment.date_time}</td>
+                                    <td> {formatDate(appointment.date_time)}</td>
                                     <td> {`${appointment.technician.first_name} ${appointment.technician.last_name}`}</td>
                                     <td> {appointment.reason}</td>
                                     <td><button className="btn btn-danger" onClick={() => cancelAppointment(appointment.id)}>Cancel</button><button className="btn btn-success" onClick={() => finishAppointment(appointment.id)}>Finished</button></td>

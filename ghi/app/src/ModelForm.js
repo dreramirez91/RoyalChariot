@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function ModelForm() {
     const [manufacturers, setManufacturers] = useState([])
     const [model, setModel] = useState('')
     const [pictureUrl, setPictureUrl] = useState('')
     const [manufacturer, setManufacturer] = useState('')
+    const navigate = useNavigate()
 
 
     const fetchData = async () => {
@@ -55,6 +57,7 @@ export default function ModelForm() {
             setModel('')
             setPictureUrl('')
         }
+        navigate("/models")
     }
     return(
     <div className="row">

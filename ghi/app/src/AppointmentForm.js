@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function AppointmentForm() {
     const [technicians, setTechnicians] = useState([])
@@ -7,6 +8,7 @@ export default function AppointmentForm() {
     const [dateTime, setDateTime] = useState('')
     const [technician, setTechnician] = useState('')
     const [reason, setReason] = useState('')
+    const navigate = useNavigate()
 
 
     const fetchData = async () => {
@@ -66,6 +68,7 @@ export default function AppointmentForm() {
             setTechnician('')
             setReason('')
         }
+        navigate("/appointments")
     }
     return (
         <div className="row">
@@ -79,7 +82,7 @@ export default function AppointmentForm() {
                         </div>
                         <div className="form-floating mb-3">
                             <input value={customer} onChange={handleCustomerChange} placeholder="Customer" required type="text" name="customer" className="form-control" />
-                            <label htmlFor="pictureUrl">Year...</label>
+                            <label htmlFor="pictureUrl">Name...</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input value={dateTime} onChange={handleDateTimeChange} placeholder="Date/Time" required type="datetime-local" name="date_time" className="form-control" />
@@ -104,3 +107,5 @@ export default function AppointmentForm() {
         </div>
     )
 }
+
+// if sale.salesperson.employee_id in
