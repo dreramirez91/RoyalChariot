@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import * as Icons from "react-icons/fa"
+import { NavLink } from 'react-router-dom';
 
 function Nav() {
   return (
