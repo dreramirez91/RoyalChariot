@@ -12,7 +12,7 @@ function MainPage() {
         <h1 style={{ color: "white" }}>The Noble Carriage</h1>
         <div className='text-white text-center m-4 px-5'>
           <div className='text-center'>
-            <p className='h3'>
+            <p className='h3' style={{fontStyle:"italic"}}>
               Your premiere solution for automobile dealership management.
             </p>
           </div>
