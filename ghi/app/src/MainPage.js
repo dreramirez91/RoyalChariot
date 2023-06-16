@@ -1,20 +1,25 @@
 import * as Icons from "react-icons/fa"
-import carVid from "./assets/pexels-taryn-elliott-5309381-1920x1080-25fps.mp4"
+import carVid from "./assets/car.mp4"
 
 function MainPage() {
-
   return (
-    <div className="px-4 py-5 my-5 text-center">
-      <h1 className="display-5 fw-bold">CarCar<Icons.FaCar style={{ marginLeft: '2px' }} /></h1>
-      <div className="col-lg-6 mx-auto">
-        <p className="lead mb-4">
-          The premiere solution for automobile dealership
-          management!
-        </p>
+    <div className='main'>
+      <div style={{position: 'absolute', top: '0',bottom: '0',width: '100%', height: '100%',backgroundColor: 'rgba(0,0,0,0.6',zIndex: '-1'}} className='overlay'></div>
+      <video src={carVid} autoPlay loop muted style={{position: 'absolute', width: '100%', left: '50%', top: '50%', height: '100%', objectFit: 'cover', transform: 'translate(-50%, -50%)', zIndex: '-2'}} />
+      <div className='container justify-content-center p-5 m-4'></div>
+      <div className='col text-center p-5'>
+      <h1 style={{color: "white"}}>CarCar<Icons.FaCar style={{ marginLeft: '2px' }} /></h1>
+      <div className='text-white text-center m-4 px-5'>
+          <div className='text-center'>
+            <p className='h3'>
+              The premiere solution for automobile dealership management.
+            </p>
+        </div>
       </div>
-      <video src={carVid} autoPlay loop muted width="100%" />
-    </div >
+      </div>
+    </div>
   );
 }
+
 
 export default MainPage;
