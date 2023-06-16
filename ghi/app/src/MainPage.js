@@ -8,7 +8,7 @@ function MainPage() {
       <video src={carVid} autoPlay loop muted style={{position: 'absolute', width: '100%', left: '50%', top: '50%', height: '100%', objectFit: 'cover', transform: 'translate(-50%, -50%)', zIndex: '-2'}} />
       <div className='container justify-content-center p-5 m-4'></div>
       <div className='col text-center p-5'>
-      <h1 style={{color: "white"}}>CarCar<Icons.FaCar style={{ marginLeft: '2px' }} /></h1>
+      <h1 style={{color: "white"}}>CarCar<Icons.FaCar style={{ fontSize: "30px", marginLeft: '2px' }} /></h1>
       <div className='text-white text-center m-4 px-5'>
           <div className='text-center'>
             <p className='h3'>
