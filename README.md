@@ -16,19 +16,20 @@ Integration with RESTful APIs for real-time information
 
 The Royal Chariot is built using the following technologies:
 
-Django
-React
-CSS
-Bootstrap
-JavaScript
-Docker
-Getting Started
+Django  
+React  
+CSS  
+Bootstrap  
+JavaScript  
+Docker  
+
+## Getting Started
 To run the project locally, follow the steps below:
 
-## Prerequisites
+### Prerequisites
 Docker must be installed on your system.
 
-## Installation
+### Installation
 Clone the repository from gitlab.com/dreramirez91/RoyalChariot.
 
 Navigate to the project directory.
@@ -40,7 +41,7 @@ Copy code
 docker compose up -build   
 Access the web application in your browser at http://localhost:3000/.
 
-## Usage
+### Usage
 Once the application is running, you can use the web interface to manage inventory, sales records, and customer relationships. The responsive design ensures a seamless experience for both customers and staff.
 
 ## Contributing
