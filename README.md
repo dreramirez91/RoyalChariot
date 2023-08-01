@@ -1,4 +1,4 @@
-The Royal Chariot
+# The Royal Chariot
 
 The Royal Chariot is a comprehensive car dealership management system designed to optimize various aspects of running a car dealership. It simplifies inventory management, enhances customer relationship tracking, and provides a user-friendly interface for both customers and staff.
 
@@ -35,9 +35,9 @@ Navigate to the project directory.
 
 Build and run the Docker containers:
 
-bash
-Copy code
-docker compose up -build
+bash   
+Copy code   
+docker compose up -build   
 Access the web application in your browser at http://localhost:3000/.
 
 Usage
