@@ -48,4 +48,4 @@ Once the application is running, you can use the web interface to manage invento
 We welcome contributions to improve The Royal Chariot. If you wish to contribute, please reach out to the lead developer, Dre Ramirez, at dreramirez91@gmail.com.
 
 ## Acknowledgements
-We would like to acknowledge the valuable contributions of all the project contributors. Kristian Allen, Ray Parker, Michael Martinez, and Marc Rey.
+We would like to acknowledge the valuable contributions of all the project contributors. Cougan Kidd and all the instructors at Hack Reactor.
